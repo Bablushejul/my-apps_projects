@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
+import Wraper from "../Helpers/Wraper";
 //import UserList from "./UserList";
 import classes from "./AddUser.module.css";
 const AddUser = (props) => {
@@ -10,6 +11,8 @@ const AddUser = (props) => {
   const [error, setError] = useState();
   const addUserHandler = (event) => {
     event.preventDefault();
+    //const enteredname=nameInputRef.current.value;
+    //const enteredUserAge=ageInputRef.current.value;
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
         tittle: "Invalid input",
@@ -39,7 +42,7 @@ const AddUser = (props) => {
     setError(null);
   };
   return (
-    <div>
+    <Wraper>
       {error && (
         <ErrorModal
           tittle={error.tittle}
@@ -53,20 +56,22 @@ const AddUser = (props) => {
           <input
             id="username"
             type="text"
+            // ref={nameInputRef}
             value={enteredUsername}
             onChange={usernameChangeHandler}
           />
           <label htmlFor="age">Age</label>
           <input
             id="age"
-            type="number"
+            type="number" 
+            //ref={ageInputRef}
             value={enteredAge}
             onChange={userAgeChangeHandler}
           />
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </Wraper>
   );
 };
 
